@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>SIXPACK</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='sixpack.css'>
+    <script src='Sixpack.js'></script>
+</head>
+<body>
+    <div class="intro">
+    <p class="greet">Thursday schedule</p>
+    </div>
+    <div id="tablesContainer">
+        <div class="flex-table" id="exerciseTableTemplate">
+            <div class="flex-table-row flex-table-header">
+                <div class="flex-table-cell"><input type="text" placeholder="Exercise name"></div>
+                <div class="flex-table-cell"><input type="text" placeholder="N. of series"></div>
+                <div class="flex-table-cell"><input type="text" placeholder="N. of reps"></div>
+                <div class="flex-table-cell"><input type="text" placeholder="Break time"></div>
+                <div class="flex-table-cell"><input type="text" placeholder="Body part to be trained"></div>
+                <div class="flex-table-cell"><input type="file"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="buttons">
+        <input type="button" class="btn" id="CTS" onclick="duplicateTable()" value="+">
+        <input type="button" class="btn" id="CTS" onclick="removeTable()" value="-">
+    <a href="sixpack.html">    
+    <input type="button"class="btn" value= "Back to home">
+    </a>
+    <input type="button"class="btn" id="Save" onclick="saveSession('thursday')" value= "Save">
+    <input type="button" class="btn" id="Reset" onclick="Reset()('thursday')" value="RESET">
+    </div>
+    <script>
+        // Ensure the script runs after the DOM has fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Define or retrieve the page_id (this can also be done dynamically)
+            const page_id = 'thursday'; // Replace with actual logic to get page_id
+
+            // Call the loadSession function with the page_id
+            loadSession(page_id);
+        });
+    </script>
+    </div>
+</body>
+</html>
