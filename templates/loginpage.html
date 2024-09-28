@@ -5,18 +5,33 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Login</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='sixpack.css'>
-    <script src='Sixpack.js' defer></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='sixpack.css') }}">
+    <script type="text/javascript">
+        const loginPageUrl = "{{ url_for('login_page') }}"; // Passa l'URL di login a JavaScript
+    </script>
+    <script src="{{ url_for('static', filename='Sixpack.js') }}"></script>
 </head>
 <body>
     <div class="login-container">
         <h1>Login</h1>
-        <form id="loginForm">
-            <label for="user_id">User ID:</label>
-            <input type="text" id="user_id" name="user_id" required>
+        <form action="{{ url_for('login_page') }}" method="POST">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
             <input type="submit" value="Login">
         </form>
-        <div id="error-message"></div>
+        
+        // Aggiungi qui il pulsante per la registrazione
+        <div class="register-link">
+            <p>Non hai un account? <a href="{{ url_for('register_page') }}">Registrati qui</a></p>
+        </div>
+
+        <div id="error-message">{{ error }}</div>
     </div>
 </body>
 </html>
