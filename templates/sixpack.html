@@ -5,16 +5,22 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>SIXPACK</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='sixpack.css'>
-    <script src="{{ url_for('static', filename='sixpack.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='sixpack.css') }}">
+    <script src="{{ url_for('static', filename='Sixpack.js') }}" defer></script>
+    
 </head>
 <body>
     <div class="intro">
-    <p class="greet">Welcome to Six-pack!</p>
+        <p class="greet">Welcome to Six-pack!</p>
     </div>
     <div class="buttons">
-        <a href="yourtrainingsessions.html">
-    <input type="button" class="btn" id="PTS" value="My training sessions"></a>
+        <a href="{{ url_for('training_sessions_page') }}">
+            <input type="button" class="btn" value="My Training Sessions">
+        </a>
+        <a href="{{ url_for('profile_page') }}">
+            <input type="button" class="btn" value="Profile">
+        </a>
+        
     </div>
 </body>
 </html>
