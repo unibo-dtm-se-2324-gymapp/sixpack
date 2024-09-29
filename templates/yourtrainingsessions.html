@@ -1,35 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Your training sessions</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='sixpack.css'>
-    <script src='six_pack.js'></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Your Training Sessions</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='sixpack.css') }}">
+    <script src="{{ url_for('static', filename='Sixpack.js') }}" defer></script>
 </head>
 <body>
     <div class="intro">
-    <p class="greet">Welcome to Six-pack!</p>
+        <p class="greet">Welcome to Six-pack!</p>
     </div>
     <div class="buttons">
-     <a href="Monday.html">
-    <input type="button"class="btn" value="Monday training session"></a>
-    <a href="Tuesday.html">
-        <input type="button"class="btn" value="Tuesday training session"></a>
-    <a href="Wednesday.html">
-        <input type="button"class="btn" value="Wednesday training session"></a>
-    <a href="Thursday.html">
-        <input type="button"class="btn" value="Thursday training session"></a>
-    <a href="Friday.html">
-        <input type="button"class="btn" value="Friday training session"></a>
-    <a href="Saturday.html">
-        <input type="button"class="btn" value="Saturday training session"></a>
-    <a href="Sunday.html">
-        <input type="button"class="btn" value="Sunday training session"></a>
-    <a href="sixpack.html">
-    <input type="button"class="btn" a href="sixpack.html" value="Back to home">
-    </a>
+        <!-- Monday Button -->
+        <a href="{{ url_for('monday_page') }}">
+            <button class="btn">Monday Training Session</button>
+        </a>
+        
+        <!-- Tuesday Button -->
+        <a href="{{ url_for('tuesday_page') }}">
+            <button class="btn">Tuesday Training Session</button>
+        </a>
+        
+        <!-- Wednesday Button -->
+        <a href="{{ url_for('wednesday_page') }}">
+            <button class="btn">Wednesday Training Session</button>
+        </a>
+        
+        <!-- Thursday Button -->
+        <a href="{{ url_for('thursday_page') }}">
+            <button class="btn">Thursday Training Session</button>
+        </a>
+        
+        <!-- Friday Button -->
+        <a href="{{ url_for('friday_page') }}">
+            <button class="btn">Friday Training Session</button>
+        </a>
+        
+        <!-- Saturday Button -->
+        <a href="{{ url_for('saturday_page') }}">
+            <button class="btn">Saturday Training Session</button>
+        </a>
+        
+        <!-- Sunday Button -->
+        <a href="{{ url_for('sunday_page') }}">
+            <button class="btn">Sunday Training Session</button>
+        </a>
+        
+        <!-- Back to Home Button -->
+        <a href="{{ url_for('home_page') }}">
+            <button class="btn">Back to Home</button>
+        </a>
     </div>
 </body>
 </html>
