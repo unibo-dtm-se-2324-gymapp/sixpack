@@ -30,179 +30,174 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 function duplicateTable() {
-  // Create a new table element
-  const newTable = document.createElement("div");
-  newTable.classList.add("flex-table");
+  // Retrieve the hidden template table (which is hidden using 'display: none;')
+  const template = document.querySelector("#exerciseTableTemplate");
+  if (!template) {
+    console.error("Template con ID 'exerciseTableTemplate' non trovato!");
+    return;
+  }
 
-  // Create the table header row
-  const headerRow = document.createElement("div");
-  headerRow.classList.add("flex-table-row", "flex-table-header");
+  // Clone the template table
+  const clone = template.cloneNode(true);
+  clone.removeAttribute("id"); // Remove ID to prevent duplicates
+  clone.style.display = "block"; // Ensure the cloned table is visible
 
-  // Define the placeholders for each column
-  const placeholders = [
-    "Exercise name",
-    "N. of series",
-    "N. of reps",
-    "Break time",
-    "Body part to be trained",
-  ];
-
-  // Create the cells and input fields for each placeholder
-  placeholders.forEach((placeholder) => {
-    const cell = document.createElement("div");
-    cell.classList.add("flex-table-cell");
-
-    const input = document.createElement("input");
-    input.type = "text";
-    input.placeholder = placeholder;
-
-    cell.appendChild(input);
-    headerRow.appendChild(cell);
-  });
-
-  // Add a file input cell (if needed)
-  const fileCell = document.createElement("div");
-  fileCell.classList.add("flex-table-cell");
-
-  const fileInput = document.createElement("input");
-  fileInput.type = "file";
-
-  fileCell.appendChild(fileInput);
-  headerRow.appendChild(fileCell);
-
-  // Append the header row to the new table
-  newTable.appendChild(headerRow);
-
-  // Append the new table to the container
-  const container = document.getElementById("tablesContainer");
-  container.appendChild(newTable);
+  // Append the cloned table to the container
+  document.getElementById("tablesContainer").appendChild(clone);
 }
 
 function removeTable() {
   const container = document.getElementById("tablesContainer");
-  const tables = container.querySelectorAll(".flex-table");
-
-  if (tables.length > 0) {
-    const lastTable = tables[tables.length - 1];
-
-    if (lastTable && lastTable.id !== "exerciseTableTemplate") {
-      container.removeChild(lastTable);
-    }
+  if (container.children.length > 1) {
+    container.removeChild(container.lastElementChild);
   }
 }
 
 function saveSession(page_id) {
-  const user_id = localStorage.getItem("user_id"); // Retrieve the user_id stored in local storage
+  const user_id = localStorage.getItem("user_id") || getCookie("user_id");
+  if (!user_id) {
+    console.error("Utente non loggato, impossibile salvare la sessione.");
+    return;
+  }
+
+  page_id = page_id.toLowerCase();
+
   const tables = document.querySelectorAll(".flex-table");
   const data = [];
-
   tables.forEach((table) => {
     const inputs = table.querySelectorAll('input[type="text"]');
     const tableData = Array.from(inputs).map((input) => input.value);
     data.push(tableData);
   });
 
-  fetch("http://localhost:5000/save", {
+  // Log per il debug
+  console.log(`Salvataggio dati per ${user_id}_${page_id}_data:`, data);
+
+  // Salva i dati localmente
+  localStorage.setItem(`${user_id}_${page_id}_data`, JSON.stringify(data));
+
+  // Invia i dati al server
+  fetch("/save", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ user_id: user_id, page_id: page_id, data: data }), // Include page_id in the request
+    body: JSON.stringify({
+      user_id: user_id,
+      page_id: page_id,
+      data: data,
+    }),
   })
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Errore nel salvataggio: " + response.statusText);
+      }
+      return response.json();
+    })
     .then((data) => {
-      console.log("Save successful:", data);
+      console.log("Salvataggio riuscito:", data);
     })
     .catch((error) => {
-      console.error("Save failed:", error);
+      console.error("Salvataggio fallito:", error);
     });
 }
-function loadSession(page_id) {
-  const user_id = localStorage.getItem("user_id");
 
-  fetch(`http://localhost:5000/load?user_id=${user_id}&page_id=${page_id}`, {
+function loadSession(page_id) {
+  const user_id = localStorage.getItem("user_id") || getCookie("user_id");
+  if (!user_id) {
+    console.error("Utente non loggato, impossibile caricare la sessione.");
+    return;
+  }
+
+  page_id = page_id.toLowerCase();
+
+  const container = document.querySelector("#tablesContainer");
+  if (!container) {
+    console.error("Elemento #tablesContainer non trovato.");
+    return;
+  }
+
+  // Carica i dati dal localStorage
+  const savedData = localStorage.getItem(`${user_id}_${page_id}_data`);
+  const data = savedData ? JSON.parse(savedData) : [];
+
+  // Rimuovi tabelle esistenti prima di caricare nuove
+  container.innerHTML = "";
+
+  // Se ci sono dati salvati, li carichiamo nella tabella
+  data.forEach((tableData) => {
+    const table = document.createElement("div");
+    table.classList.add("flex-table");
+    const row = document.createElement("div");
+    row.classList.add("flex-table-row", "flex-table-header");
+
+    const placeholders = [
+      "Nome esercizio",
+      "N. di serie",
+      "N. di ripetizioni",
+      "Tempo di recupero",
+      "Parte del corpo da allenare",
+    ];
+
+    placeholders.forEach((placeholder, i) => {
+      const cell = document.createElement("div");
+      cell.classList.add("flex-table-cell");
+      const input = document.createElement("input");
+      input.type = "text";
+      input.placeholder = placeholder;
+      input.value = tableData[i] || ""; // Imposta il valore dell'input con i dati salvati
+      cell.appendChild(input);
+      row.appendChild(cell);
+    });
+
+    table.appendChild(row);
+    container.appendChild(table);
+  });
+}
+
+function resetSession(page_id) {
+  const user_id = localStorage.getItem("user_id") || getCookie("user_id");
+  if (!user_id) {
+    console.error("Utente non loggato, impossibile resettare la sessione.");
+    return;
+  }
+
+  localStorage.removeItem(`${user_id}_${page_id}_data`);
+
+  fetch(`/reset?user_id=${user_id}&page_id=${page_id}`, {
     method: "GET",
   })
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Errore nel reset: " + response.statusText);
+      }
+      return response.json();
+    })
     .then((data) => {
-      const container = document.querySelector("#tablesContainer"); // Assicurati che l'ID sia corretto
-      container.innerHTML = "";
-
-      data.data.forEach((tableData) => {
-        // Crea una nuova tabella
-        const table = document.createElement("div");
-        table.classList.add("flex-table"); // Assicurati che la classe sia corretta
-
-        // Crea la riga header
-        const row = document.createElement("div");
-        row.classList.add("flex-table-row", "flex-table-header");
-
-        // I placeholder degli input
-        const placeholders = [
-          "Exercise name",
-          "N. of series",
-          "N. of reps",
-          "Break time",
-          "Body part to be trained",
-        ];
-
-        // Crea ogni cella e input
-        placeholders.forEach((placeholder, i) => {
-          const cell = document.createElement("div");
-          cell.classList.add("flex-table-cell");
-
-          const input = document.createElement("input");
-          input.type = "text";
-          input.placeholder = placeholder;
-          input.value = tableData[i] || "";
-
-          cell.appendChild(input);
-          row.appendChild(cell);
-        });
-
-        // Aggiungi la cella con input di tipo file
-        const fileCell = document.createElement("div");
-        fileCell.classList.add("flex-table-cell");
-
-        const fileInput = document.createElement("input");
-        fileInput.type = "file";
-
-        fileCell.appendChild(fileInput);
-        row.appendChild(fileCell);
-
-        // Aggiungi la riga alla tabella
-        table.appendChild(row);
-
-        // Aggiungi la tabella al contenitore
-        container.appendChild(table);
-      });
+      console.log("Sessione resettata:", data);
+      resetInputs();
     })
     .catch((error) => {
-      console.error("Load failed:", error);
+      console.error("Reset fallito:", error);
     });
 }
 
-function Reset() {
-  // Seleziona tutte le tabelle con la classe 'flex-table'
+function resetInputs() {
   const tables = document.querySelectorAll(".flex-table");
-
-  // Itera su ogni tabella
   tables.forEach((table) => {
-    // Seleziona tutti gli input all'interno della tabella
     const inputs = table.querySelectorAll('input[type="text"]');
-
-    // Pulisce il valore di ogni input
     inputs.forEach((input) => {
       input.value = "";
     });
-
-    // Seleziona e resetta tutti i campi file (opzionale)
     const fileInputs = table.querySelectorAll('input[type="file"]');
     fileInputs.forEach((fileInput) => {
-      fileInput.value = ""; // Resetta il campo file
+      fileInput.value = "";
     });
   });
 }
 
-// Esempio di utilizzo della funzione
-Reset();
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(";").shift();
+}
