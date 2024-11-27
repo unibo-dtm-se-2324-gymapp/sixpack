@@ -75,7 +75,8 @@ python Sixpack.py
 Once you run this command a link like the one below should appear and, by clicking on it, the application should start.
 
 http://127.0.0.1:5000
-How the Code Works
+
+<h3>How the Code Works</h3>
 <h5>Routing:</h5>
 
 The app uses Flask's routing to define URL endpoints for all features.
