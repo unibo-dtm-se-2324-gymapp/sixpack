@@ -1,0 +1,37 @@
+# Normalizzazione degli end-of-line per evitare conflitti tra sistemi operativi
+* text=auto eol=lf
+
+# Trattamento specifico per file Python
+*.py text eol=lf
+
+# File di configurazione e script
+*.sh text eol=lf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# File CSS e JS
+*.css text eol=lf
+*.js text eol=lf
+
+# File HTML
+*.html text eol=lf
+
+# File JSON e CSV
+*.json text eol=lf
+*.csv text eol=lf
+
+# File binari (evita la conversione line endings)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+
+# File di log (non sottoposti a modifica del testo)
+*.log text
+
+# File di documentazione
+*.md text eol=lf
+*.txt text eol=lf
