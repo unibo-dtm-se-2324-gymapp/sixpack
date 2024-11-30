@@ -1,0 +1,54 @@
+# Python environment
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+env/
+venv/
+
+# Flask specific
+instance/
+*.db
+*.sqlite3
+
+# Logs and runtime files
+*.log
+*.pid
+*.seed
+*.lock
+nohup.out
+*.json
+*.csv
+
+# Frontend build and cache
+staticfiles/
+*.css.map
+*.js.map
+
+# Node.js (per eventuali dipendenze frontend)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# IDE/editor specific
+.vscode/
+.idea/
+*.sublime-workspace
+
+# System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Environments and credentials
+.env
+.env.*
+config.py
+
+# Temporary or backup files
+*.bak
+*.swp
+*.tmp
+*.temp
