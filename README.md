@@ -1,72 +1,127 @@
-<h1> Six-pack</h1>
-Sixpack is a web application built in Flask that lets users create an account, log in, and then create personalized training sessions with exercises that can be tailored to the user needs.
+<h1>Sixpack</h1>
+<p>
+    Sixpack is a web application built in Flask that lets users create an account, log in, and create personalized training sessions with exercises tailored to user needs.
+</p>
 
-<h3>Features</h3>
-<h5>User Authentication</h5>
-User registration and login system
-<h5>Training sessions</h5>
-Browse available gym classes along with their description and slots
-<h5>Personalized Training Sessions</h5>
-Create custom training sessions
-Add exercises to sessions, specifying sets and reps
+<h2>Current Version</h2>
+<p><strong>1.1.0</strong></p>
 
-<h3>Requirements</h3>
-Before running the application make sure you have the following installed:
+<hr>
 
-Python 3.7+
-Pip (Python package manager)
-<h3>Installation</h3>
+<h2>Features</h2>
 
-<h5>Clone the Repository</h5>
-git clone + link of the repository on github
+<h3>User Authentication</h3>
+<ul>
+    <li>User registration and login system.</li>
+</ul>
 
-<h5>Create a Virtual Environment</h5>
+<h3>Training Sessions</h3>
+<ul>
+    <li>Browse available gym classes along with their descriptions and slots.</li>
+</ul>
 
-python -m venv venv
-source venv/bin/activate # On Windows, use `venv\\Scripts\\activate`
-<h5>Install Dependencies</h5>
+<h3>Personalized Training Sessions</h3>
+<ul>
+    <li>Create custom training sessions.</li>
+    <li>Add exercises to sessions, specifying sets and reps.</li>
+</ul>
 
-pip install -r requirements.txt
-<h5>Run the Application</h5>
+<hr>
 
-python Sixpack.py
-<h5>Access the Application</h5>
+<h2>Requirements</h2>
+<p>Before running the application, ensure the following are installed:</p>
+<ul>
+    <li><strong>Python 3.7+</strong></li>
+    <li><strong>Pip</strong> (Python package manager)</li>
+</ul>
 
-Open your browser and navigate to:
-In the terminal, there must be a link like the one below, click on it and the website should appear.
-http://127.0.0.1:5000
+<hr>
 
+<h2>Installation</h2>
 
-<h3>Usage</h3>
-<h5>Register an Account</h5>
-We did some basic security measures such as the compulsory presence of the @ in the mail, but surely more could be done about password improvements.
-<h5>Login</h5>
+<h3>Clone the Repository</h3>
+<pre><code>git clone &lt;repository-link&gt;</code></pre>
 
-Log in to your account to see some available features.
-<h5>See Trainings</h5>
-If this is your first time in Sixpack, you will just see empty tables to fill with exercise
-<h5>Create Exercises</h5>
-In every session, add exercises by setting exercise names, sets, and reps.
+<h3>Create a Virtual Environment</h3>
+<pre><code>python -m venv venv
+source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+</code></pre>
 
-<h3>Technologies Used</h3>
-Backend: Python
-Frontend: HTML, CSS and JS
-Database: In-memory Python structures (extendable to SQL with Flask-SQLAlchemy)
-<h3>Future Enhancements</h3>
-Add a database, such as SQLite or PostgreSQL, for persistent data storage.
-Advanced user authentication, such as password hashing with Flask-Bcrypt.
-Add a user dashboard to track progress over time.
-Integrate class booking with calendars.
-Enhance styling with Bootstrap or TailwindCSS.
-<h3>Contributing</h3>
-Contributions are welcome! If you find bugs or have suggestions, please open an issue or submit a pull request.
+<h3>Install Dependencies</h3>
+<pre><code>pip install -r requirements.txt</code></pre>
 
-<h3>License</h3>
-This project is licensed under the MIT License. See the LICENSE file for more details.
+<h3>Run the Application</h3>
+<pre><code>python Sixpack.py</code></pre>
 
-<h3>Contact</h3>
-For questions or feedback, feel free to reach out:
+<h3>Access the Application</h3>
+<p>
+    1. Open your browser.<br>
+    2. Navigate to the link shown in the terminal (e.g., <code>http://127.0.0.1:5000</code>).
+</p>
 
-Name: Alessandro Astolfi, Marta Betti,Domenico Bonifazio, Klaudia Daci e Leilei Zhang
-Email: alessandro.astolfi@studio.unibo.it,marta.betti5@studio.unibo.it,domenico.bonifazio@studio.unibo.it,klaudia.daci@studio.unibo.it,leilei.zhang@studio.unibo.it
+<hr>
+
+<h2>Usage</h2>
+
+<h3>Register an Account</h3>
+<p>
+    Basic security measures are implemented, such as requiring "@" in the email address. Additional password improvements could be added in future updates.
+</p>
+
+<h3>Login</h3>
+<p>Log in to your account to access the available features.</p>
+
+<h3>See Trainings</h3>
+<p>If you’re a first-time user, you’ll see empty tables to populate with exercises.</p>
+
+<h3>Create Exercises</h3>
+<ul>
+    <li>Add exercises by specifying exercise names, sets, and reps.</li>
+</ul>
+
+<hr>
+
+<h2>Technologies Used</h2>
+<ul>
+    <li><strong>Backend:</strong> Python</li>
+    <li><strong>Frontend:</strong> HTML, CSS, and JS</li>
+    <li><strong>Database:</strong> In-memory Python structures (extendable to SQL with Flask-SQLAlchemy)</li>
+</ul>
+
+<hr>
+
+<h2>Future Enhancements</h2>
+<ul>
+    <li>Add a database (e.g., SQLite or PostgreSQL) for persistent data storage.</li>
+    <li>Implement advanced user authentication (e.g., password hashing with Flask-Bcrypt).</li>
+    <li>Add a user dashboard to track progress over time.</li>
+    <li>Integrate class booking with calendars.</li>
+    <li>Enhance styling using Bootstrap or TailwindCSS.</li>
+</ul>
+
+<hr>
+
+<h2>Contributing</h2>
+<p>
+    Contributions are welcome! If you find bugs or have suggestions, feel free to open an issue or submit a pull request.
+</p>
+
+<hr>
+
+<h2>License</h2>
+<p>
+    This project is licensed under the <strong>MIT License</strong>. See the <a href="LICENSE.md">LICENSE</a> file for more details.
+</p>
+
+<hr>
+
+<h2>Contact</h2>
+<p>For questions or feedback, reach out to the contributors:</p>
+<ul>
+    <li><strong>Alessandro Astolfi:</strong> <a href="mailto:alessandro.astolfi@studio.unibo.it">alessandro.astolfi@studio.unibo.it</a></li>
+    <li><strong>Marta Betti:</strong> <a href="mailto:marta.betti5@studio.unibo.it">marta.betti5@studio.unibo.it</a></li>
+    <li><strong>Domenico Bonifazio:</strong> <a href="mailto:domenico.bonifazio@studio.unibo.it">domenico.bonifazio@studio.unibo.it</a></li>
+    <li><strong>Klaudia Daci:</strong> <a href="mailto:klaudia.daci@studio.unibo.it">klaudia.daci@studio.unibo.it</a></li>
+    <li><strong>Leilei Zhang:</strong> <a href="mailto:leilei.zhang@studio.unibo.it">leilei.zhang@studio.unibo.it</a></li>
+</ul>
 
