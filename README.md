@@ -118,7 +118,7 @@ source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
 <h2>Contact</h2>
 <p>For questions or feedback, reach out to the contributors:</p>
 <ul>
-    <li><strong>Alessandro Astolfi:</strong> <a href="mailto:alessandro.astolfi2@studio.unibo.it">alessandro.astolfi@studio.unibo.it</a></li>
+    <li><strong>Alessandro Astolfi:</strong> <a href="mailto:alessandro.astolfi2@studio.unibo.it">alessandro.astolfi2@studio.unibo.it</a></li>
     <li><strong>Marta Betti:</strong> <a href="mailto:marta.betti5@studio.unibo.it">marta.betti5@studio.unibo.it</a></li>
     <li><strong>Domenico Bonifazio:</strong> <a href="mailto:domenico.bonifazio@studio.unibo.it">domenico.bonifazio@studio.unibo.it</a></li>
     <li><strong>Klaudia Daci:</strong> <a href="mailto:klaudia.daci@studio.unibo.it">klaudia.daci@studio.unibo.it</a></li>
