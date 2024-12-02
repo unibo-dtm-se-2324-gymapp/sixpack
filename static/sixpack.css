@@ -1,4 +1,4 @@
-/* Stili globali */
+
 body,
 html {
   font-family: "Roboto", sans-serif;
@@ -212,4 +212,16 @@ input[type="submit"]:hover {
 
 .register-link a:hover {
   text-decoration: underline;
+}
+
+footer {
+  position: fixed; 
+  bottom: 0;
+  left: 0;
+  width: 100%; 
+  padding-left: 20px; 
+  font-size: 0.9em; 
+  color: #555; 
+  background-color: #ffffff; 
+  z-index: 1000; 
 }
