@@ -1,5 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, make_response, jsonify
 
+# Version info
+__version__ = "1.1.0"
+
 app = Flask(__name__)
 
 # Dati utente simulati con un dizionario in memoria (da usare per test)
